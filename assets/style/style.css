@@ -5,3 +5,13 @@ button{
 #search-area{
     margin: 1%;
 }
+
+.imgDiv{
+    display: inline-block;
+    margin: 2%;
+}
+
+.gifRating{
+    text-align: center;
+    font-size: large;
+}

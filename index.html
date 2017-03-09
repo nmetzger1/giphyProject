@@ -6,7 +6,8 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/style/style.css" type="text/css">
-
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="assets/javascript/javascript.js"></script>
 </head>
 <body>
 <div class="container">
@@ -23,52 +24,6 @@
     </form>
 
     <div id="results"></div>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript">
-        var buttonArray = ["football", "hockey", "basketball", "baseball", "wwe"];
-
-        function renderButtons() {
-
-            //Empty the current button area
-            $("#button-list").empty();
-
-            //Generate list of buttons
-            for(var i = 0; i < buttonArray.length; i++){
-                var btn = $("<button>" + buttonArray[i] + "</button>");
-
-                //add class to button
-                btn.addClass("search-button");
-                //add dataname to button
-                btn.attr("data-name", buttonArray[i]);
-                //add text to button
-                btn.text(buttonArray[i]);
-
-                //add button to button-list
-                $("#button-list").append(btn);
-            }
-        }
-
-        $("#submit-button").on("click", function(event){
-            //Allows user to search with enter button
-            event.preventDefault();
-            //store user input
-            var searchText = $("#search-box").val().trim();
-
-            //leave function if searchtext is blank
-            if(searchText === ""){
-                return;
-            }
-            //pushes new text to array
-            buttonArray.push(searchText);
-            //update button list
-            renderButtons();
-            //clear search box
-            $("#search-box").val("");
-        });
-
-        renderButtons();
-
-    </script>
 </div>
 </body>
 </html>
