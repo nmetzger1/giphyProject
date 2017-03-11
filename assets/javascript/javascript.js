@@ -1,6 +1,6 @@
-var buttonArray = ["football", "hockey", "basketball", "baseball", "wwe"];
+var buttonArray = ["Oh My God", "Applause", "Happy", "Scared", "Mind Blown"];
 
-$(document).ready(function () {
+$().ready(function () {
 
     renderButtons();
 
@@ -25,6 +25,7 @@ $(document).ready(function () {
         }
     }
 
+    //Search / Add new button when search term is submitted
     $("#submit-button").on("click", function (event) {
         //Allows user to search with enter button
         event.preventDefault();
@@ -34,7 +35,15 @@ $(document).ready(function () {
         giphySearch(searchText);
     });
 
-    $(".search-button").on("click", function () {
+    //Clear gifs on button press
+    $("#clear-button").on("click", function (event) {
+        event.preventDefault();
+        $("#results").empty();
+    });
+
+    //Search Giphy and display results on search button click
+    $("#button-list").on("click", ".search-button", function () {
+        console.log("search click");
        var searchText = $(this).attr("data-name");
        giphySearch(searchText);
     });
@@ -69,7 +78,8 @@ $(document).ready(function () {
 
                 for(var i = 0; i < response.data.length; i++)
                 {
-                    var imgURL = response.data[i].images.fixed_height.url;
+                    var stillURL = response.data[i].images.fixed_width_still.url;
+                    var animatedURL = response.data[i].images.fixed_width.url;
                     var rating = response.data[i].rating;
                     var alt = response.data[i].slug;
 
@@ -78,12 +88,15 @@ $(document).ready(function () {
 
                     //img info
                     var gif = $("<img>");
-                    gif.attr("src", imgURL);
+                    gif.attr("src", stillURL);
                     gif.addClass("gifResult");
                     gif.attr("alt", alt);
+                    gif.attr("data-animate", animatedURL);
+                    gif.attr("data-still", stillURL);
+                    gif.attr("data-state", "still");
 
                     //rating text
-                    var ratingText = $('<p class="gifRating">' + rating + '</p>');
+                    var ratingText = $('<p class="gifRating">Rated: ' + rating + '</p>');
 
                     imgDiv.append(gif,ratingText);
 
@@ -91,4 +104,20 @@ $(document).ready(function () {
                 }
             })
     }
+
+
+    //Animate / Stop gif on click
+    $("#results").on("click", '.gifResult', function () {
+
+        //if gif is still, animate it
+        if($(this).attr("data-state") === "still"){
+            $(this).attr("src", $(this).attr("data-animate"));
+            $(this).attr("data-state", "animated");
+        }
+        else{
+            $(this).attr("src", $(this).attr("data-still"));
+            $(this).attr("data-state", "still");
+        }
+    });
+
 });

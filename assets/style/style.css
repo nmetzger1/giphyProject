@@ -1,9 +1,33 @@
+body{
+    background-image: url("../images/background.png");
+    text-align: center;
+}
 button{
     margin: .5%;
 }
 
-#search-area{
-    margin: 1%;
+#history{
+    border: solid 1px blueviolet;
+    background-color: lightgray;
+}
+
+#history h4{
+    float: right;;
+    margin: 0;
+    display: inline-block;
+}
+
+.search-area{
+    background-color: lightblue;
+    padding: 1%;
+    border: solid 1px blueviolet;
+    border-top: 0;
+}
+
+#results{
+    background-color: white;
+    border: solid 1px blueviolet;
+    border-top: 0;
 }
 
 .imgDiv{
