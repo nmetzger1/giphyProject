@@ -63,7 +63,7 @@ $().ready(function () {
     }
 
     function giphySearch(search) {
-        var query = "http://api.giphy.com/v1/gifs/search?q=" + search + "&limit=10&api_key=dc6zaTOxFJmzC";
+        var query = "https://api.giphy.com/v1/gifs/search?q=" + search + "&limit=10&api_key=dc6zaTOxFJmzC";
 
         //call to giphy
         $.ajax({
